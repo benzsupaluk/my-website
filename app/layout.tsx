@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Lexend } from "next/font/google";
+import clsx from "clsx";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+import Navbar from "./components/Navbar";
+
+const lexend = Lexend({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-lexend",
 });
 
 export const metadata: Metadata = {
@@ -25,10 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={clsx(lexend.variable)}>
+        <main className="relative text-default font-lexend flex flex-col justify-between h-[100dvh] overflow-hidden">
+          <section className="grow overflow-auto flex flex-col relative">
+            <Navbar className="fixed top-6 left-6 w-[calc(100dvw_-_48px)]" />
+            <div className="grow overflow-auto">{children}</div>
+          </section>
+          {/* footer */}
+        </main>
       </body>
     </html>
   );
