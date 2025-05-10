@@ -18,10 +18,25 @@
   h4 {
     @apply text-2xl;
   }
+
+  svg:not(.no-inherit) path,
+  svg:not(.no-inherit) g,
+  svg:not(.no-inherit) circle,
+  svg:not(.no-inherit) ellipse,
+  svg:not(.no-inherit) line,
+  svg:not(.no-inherit) polygon,
+  svg:not(.no-inherit) polyline,
+  svg:not(.no-inherit) rect,
+  svg:not(.no-inherit) g>path {
+    stroke: currentColor;
+  }
 }
 
 
 @layer utilities {
+  .flex-center {
+    @apply flex justify-center items-center
+  }
   .text-balance {
     text-wrap: balance;
   }

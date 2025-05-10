@@ -1,15 +1,24 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Lexend } from "next/font/google";
+import { Lexend, Raleway } from "next/font/google";
+
 import clsx from "clsx";
 import "./globals.css";
 
 import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import { Z_INDEX } from "@/constants";
 
 const lexend = Lexend({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-lexend",
+});
+
+const raleway = Raleway({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-raleway",
 });
 
 export const metadata: Metadata = {
@@ -24,13 +33,33 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={clsx(lexend.variable)}>
-        <main className="relative text-default font-lexend flex flex-col justify-between h-[100dvh] overflow-hidden">
-          <section className="grow overflow-auto flex flex-col relative">
-            <Navbar className="fixed top-6 left-6 w-[calc(100dvw_-_48px)]" />
-            <div className="grow overflow-auto">{children}</div>
-          </section>
-          {/* footer */}
+      <body className={clsx(raleway.variable)}>
+        <main
+          className={clsx(
+            "relative font-raleway flex flex-col h-[100dvh] overflow-hidden pb-8",
+            "bg-dark-default text-white"
+          )}
+        >
+          {/* header */}
+          <div
+            style={{ zIndex: Z_INDEX.NAME }}
+            className="absolute left-4 top-2 p-8 p-8 bg-dark-default flex flex-col gap-1"
+          >
+            <div className="md:text-5xl text-3xl">Supaluk Jaroensuk</div>
+            <div className="md:text-base text-sm font-medium">
+              Frontend Developer
+            </div>
+          </div>
+          {/* sidebar */}
+          <Sidebar />
+          {/* divider */}
+          <div className="px-8 pt-16">
+            <div className="w-full h-px bg-white"></div>
+          </div>
+          <div className="pt-24 h-[100dvh_-_96px] overflow-auto grow">
+            {children}
+          </div>
+          <div className="mx-12 border-t border-white"></div>
         </main>
       </body>
     </html>

@@ -1,5 +1,6 @@
 export const Z_INDEX = {
   NAVBAR: 100,
+  NAME: 500,
   MODAL: 1000,
   MODAL_CONTAINER: 1100,
   NOTIFICATION: 200,
@@ -8,4 +9,6 @@ export const Z_INDEX = {
   SIDEBAR: 920,
   SIDEBAR_BUTTON: 950,
   SIDEBAR_BACKDROP: 900,
-}
+};
+
+export const LAYOUT_MAX_WIDTH = 1040;

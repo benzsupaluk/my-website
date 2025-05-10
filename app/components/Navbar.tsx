@@ -11,15 +11,17 @@ const Navbar = ({ className }: { className?: string }) => {
     <nav
       style={{ zIndex: Z_INDEX.NAVBAR }}
       className={clsx(
-        "border border-gray-200 py-2 px-4 rounded-xl bg-white",
-
-        className
+        "border border-gray-200 py-2 px-4 rounded-xl bg-white transition-all duration-100",
+        className,
+        "max-w-[1240px] mx-auto"
       )}
     >
-      {/* <div className="border w-full py-2 px-4 rounded-xl bg-white"> */}
-      <Link href={`/`} className="font-semibold text-lg">
-        SUPALUK
-      </Link>
+      <div className={clsx("sm:px-8 px-6")}>
+        {/* <div className="border w-full py-2 px-4 rounded-xl bg-white"> */}
+        <Link href={`/`} className="font-semibold text-lg">
+          SUPALUK
+        </Link>
+      </div>
       {/* </div> */}
     </nav>
   );
