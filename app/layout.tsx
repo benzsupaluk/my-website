@@ -4,6 +4,7 @@ import clsx from "clsx";
 
 import "./globals.css";
 
+import Analytics from "./components/Analytics";
 import Rail from "./components/Rail";
 import Footer from "./components/Footer";
 import { site } from "@/data/site";
@@ -61,6 +62,7 @@ export default function RootLayout({
             </div>
           </div>
         </div>
+        <Analytics />
       </body>
     </html>
   );
