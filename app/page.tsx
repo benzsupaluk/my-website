@@ -1,67 +1,95 @@
-"use client";
+import Link from "next/link";
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import Arrow from "./components/Arrow";
+import Reveal from "./components/Reveal";
+import Section from "./components/Section";
+import WorkLink from "./components/WorkLink";
 
-import Info from "./components/Info";
-
-import FastAPI from "@/public/images/tech/fastapi.webp";
-import Flask from "@/public/images/tech/flask.webp";
-import Gatsby from "@/public/images/tech/gatsby.webp";
-import Nextjs from "@/public/images/tech/nextjs.webp";
-import Nuxtjs from "@/public/images/tech/nuxtjs.webp";
-import ReactImage from "@/public/images/tech/react.webp";
-import ROS from "@/public/images/tech/ros.webp";
-import Vuejs from "@/public/images/tech/vuejs.webp";
+import { metrics, toolkit } from "@/data/experience";
+import { featuredItems } from "@/data/work";
+import { site } from "@/data/site";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-8 px-12 pb-8 grow">
-      <p className="max-w-[500px]">
-        I'm a Front-end Developer with 4 years of experience building
-        responsive, high-performance websites. I specialize in accessibility,
-        best practices, and SEO optimization—consistently achieving top scores
-        on Lighthouse. My focus is on creating scalable, user-friendly solutions
-        that work seamlessly across all devices.
-      </p>
-      <TechExpertise />
-    </main>
+    <div className="flex flex-col gap-16 md:gap-24">
+      <Reveal>
+        <h1 className="max-w-[20ch] text-pretty text-[28px] leading-[1.2] tracking-tightest md:text-[40px]">
+          {site.tagline}
+        </h1>
+      </Reveal>
+
+      <Reveal delay={80}>
+        <Section title="Profile">
+          <p className="max-w-prose text-pretty text-ink-muted">{site.intro}</p>
+        </Section>
+      </Reveal>
+
+      <Reveal delay={140}>
+        <Section
+          title="Selected work — Spacely AI"
+          action={
+            <Link
+              href="/works"
+              className="group flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-ink-dim transition-colors duration-300 hover:text-ink-fg"
+            >
+              All work
+              <Arrow className="transition-transform duration-500 ease-smooth group-hover:translate-x-1" />
+            </Link>
+          }
+        >
+          <div className="flex flex-col">
+            {featuredItems.map((item) => (
+              <WorkLink key={item.slug} item={item} />
+            ))}
+          </div>
+        </Section>
+      </Reveal>
+
+      <Reveal delay={200}>
+        <Section title="Now">
+          <p className="max-w-prose text-pretty text-ink-muted">{site.now}</p>
+        </Section>
+      </Reveal>
+
+      <Reveal delay={260}>
+        <Section title="Measured">
+          <dl className="flex flex-col">
+            {metrics.map((metric) => (
+              <div
+                key={metric.label}
+                className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-ink-line py-3"
+              >
+                <dt className="text-sm text-ink-fg">
+                  {metric.label}
+                  <span className="ml-2 font-mono text-[10px] uppercase tracking-widest text-ink-faint">
+                    {metric.context}
+                  </span>
+                </dt>
+                <dd className="font-mono text-sm tabular-nums text-ink-dim">
+                  {metric.from}
+                  <span className="mx-2 text-ink-faint">&rarr;</span>
+                  <span className="text-ember">{metric.to}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Section>
+      </Reveal>
+
+      <Reveal delay={320}>
+        <Section title="Toolkit">
+          <dl className="grid gap-x-10 gap-y-6 sm:grid-cols-2">
+            {toolkit.map((group) => (
+              <div key={group.label} className="flex flex-col gap-1.5">
+                <dt className="label">{group.label}</dt>
+                <dd className="text-sm text-ink-muted">
+                  {group.items.join(", ")}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Section>
+      </Reveal>
+    </div>
   );
 }
-
-const TechExpertise = () => {
-  const techList = [
-    { imageSrc: Nextjs.src, alt: "Next.js" },
-    { imageSrc: ReactImage.src, alt: "React" },
-    { imageSrc: Gatsby.src, alt: "Gatsby.js" },
-    { imageSrc: Vuejs.src, alt: "Vue.js" },
-    { imageSrc: Nuxtjs.src, alt: "Nuxt.js" },
-    { imageSrc: Flask.src, alt: "Flask" },
-    { imageSrc: FastAPI.src, alt: "Fast API" },
-    { imageSrc: ROS.src, alt: "ROS" },
-  ];
-  return (
-    <section className="flex flex-col gap-6">
-      <div className="font-semibold text-xl">My Areas of Tech Expertise</div>
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(100px,_1fr))] gap-4 max-w-[500px]">
-        {techList.map((tech, index) => {
-          return (
-            <div
-              key={index}
-              className="p-2 bg-white flex justify-center items-center rounded-lg opacity-70"
-            >
-              <Image
-                key={index}
-                src={tech.imageSrc}
-                alt={tech.alt}
-                width={80}
-                height={80}
-                className="aspect-square w-auto h-[80px] object-contain"
-              />
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
-};

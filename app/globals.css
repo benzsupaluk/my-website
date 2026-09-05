@@ -3,41 +3,97 @@
 @tailwind utilities;
 
 @layer base {
-  h1 {
-    @apply text-5xl
+  :root {
+    color-scheme: dark;
   }
 
-  h2 {
-    @apply text-4xl
+  html {
+    -webkit-text-size-adjust: 100%;
   }
 
-  h3 {
-    @apply text-3xl;
+  body {
+    @apply bg-ink-base text-ink-fg font-sans antialiased;
+    font-size: 15px;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
   }
 
-  h4 {
-    @apply text-2xl;
+  ::selection {
+    @apply bg-ember text-ink-base;
   }
 
-  svg:not(.no-inherit) path,
-  svg:not(.no-inherit) g,
-  svg:not(.no-inherit) circle,
-  svg:not(.no-inherit) ellipse,
-  svg:not(.no-inherit) line,
-  svg:not(.no-inherit) polygon,
-  svg:not(.no-inherit) polyline,
-  svg:not(.no-inherit) rect,
-  svg:not(.no-inherit) g>path {
-    stroke: currentColor;
+  a {
+    @apply outline-none;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    @apply outline outline-1 outline-offset-4 outline-ember;
+  }
+
+  /* Slim, unobtrusive scrollbar to match the flat surfaces. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-ink-base;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ink-line;
+    border: 3px solid #0a0a0a;
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-ink-faint;
   }
 }
 
+@layer components {
+  /* Small uppercase mono label used for section markers and metadata keys. */
+  .label {
+    @apply font-mono text-[10px] uppercase tracking-widest text-ink-dim;
+  }
+
+  .rule {
+    @apply h-px w-full bg-ink-line;
+  }
+
+  /* Underline that draws itself in from the left on hover. */
+  .link-underline {
+    @apply relative inline-block;
+  }
+
+  .link-underline::after {
+    content: "";
+    @apply absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-500 ease-smooth;
+  }
+
+  .link-underline:hover::after {
+    @apply origin-left scale-x-100;
+  }
+}
 
 @layer utilities {
-  .flex-center {
-    @apply flex justify-center items-center
-  }
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

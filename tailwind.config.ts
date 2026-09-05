@@ -1,91 +1,50 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "./data/**/*.{js,ts}"],
   theme: {
     extend: {
       fontFamily: {
-        lexend: ["var(--font-lexend)"],
-        raleway: ["var(--font-raleway)"],
+        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       colors: {
-        default: "#0c0c1e",
-        dark: {
-          default: "#1B1B1B",
+        ink: {
+          base: "#0A0A0A",
+          raised: "#101010",
+          line: "#1E1E1E",
+          faint: "#4A4A4A",
+          dim: "#6E6E6E",
+          muted: "#9A9A9A",
+          fg: "#EDEDED",
         },
-        primary: {
-          "50": "#f1f9fa",
-          "100": "#dbedf2",
-          "200": "#bcdbe5",
-          "300": "#8dc1d3",
-          "400": "#579eb9",
-          "500": "#3c829e",
-          "600": "#346a86",
-          "700": "#30586e",
-          "800": "#2e4b5c",
-          "900": "#2a404f",
-          "950": "#1b2e3c",
+        ember: {
+          DEFAULT: "#FF5B2E",
+          soft: "#FF8A63",
         },
-        secondary: {
-          "50": "#fff1f2",
-          "100": "#ffe4e6",
-          "200": "#fecdd3",
-          "300": "#fca5af",
-          "400": "#fa7285",
-          "500": "#f3405e",
-          "600": "#e01e48",
-          "700": "#bd133c",
-          "800": "#9e1338",
-          "900": "#74112f",
-          "950": "#4c0519",
+      },
+      letterSpacing: {
+        tightest: "-0.04em",
+        widest: "0.22em",
+      },
+      maxWidth: {
+        prose: "62ch",
+      },
+      transitionTimingFunction: {
+        smooth: "cubic-bezier(0.22, 1, 0.36, 1)",
+      },
+      keyframes: {
+        rise: {
+          from: { opacity: "0", transform: "translateY(12px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
         },
-        "light-secondary": {
-          "50": "#ebfeff",
-          "100": "#cdf8ff",
-          "200": "#94edff",
-          "300": "#62e2fe",
-          "400": "#1bcaf5",
-          "500": "#00addb",
-          "600": "#0289b8",
-          "700": "#0a6e94",
-          "800": "#125978",
-          "900": "#134a66",
-          "950": "#063046",
-        },
-        "congress-blue": {
-          "50": "#f0f7ff",
-          "100": "#e1effd",
-          "200": "#bbdefc",
-          "300": "#80c4f9",
-          "400": "#3ca5f4",
-          "500": "#138ae4",
-          "600": "#066dc3",
-          "700": "#06569e",
-          "800": "#0a4c86",
-          "900": "#0e3e6c",
-          "950": "#092848",
-        },
-        gray: {
-          25: "#FCFCFD",
-          50: "#F9FAFB",
-          100: "#F2F4F7",
-          200: "#EAECF0",
-          300: "#D0D5DD",
-          400: "#98A2B3",
-          500: "#667085",
-          600: "#475467",
-          700: "#344054",
-          800: "#182230",
-          900: "#101828",
-          950: "#0C111D",
-        },
+      },
+      animation: {
+        rise: "rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both",
       },
     },
   },
   plugins: [],
 };
+
 export default config;
