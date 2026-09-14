@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+/* Explicit so detection doesn't depend on where the build is invoked from. */
+@source "../";
+
+@theme {
+  /* The var(--font-*) values are set on <html> by next/font in layout.tsx. */
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono:
+    var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --color-ink-base: #0a0a0a;
+  --color-ink-raised: #101010;
+  --color-ink-line: #1e1e1e;
+  --color-ink-faint: #4a4a4a;
+  --color-ink-dim: #6e6e6e;
+  --color-ink-muted: #9a9a9a;
+  --color-ink-fg: #ededed;
+
+  --color-beer: #d9a21b;
+  --color-beer-soft: #f0c66a;
+
+  --tracking-tightest: -0.04em;
+  --tracking-widest: 0.22em;
+
+  /* Not --container-prose: v4 ships max-w-prose as a static 65ch utility that
+     the --container-* namespace can't override, so the measure gets its own
+     name and `max-w-prose` is replaced by `max-w-measure` in the markup. */
+  --container-measure: 62ch;
+
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-rise: rise 0.7s var(--ease-smooth) both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink-base font-sans text-ink-fg antialiased;
+    font-size: 15px;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-beer text-ink-base;
+  }
+
+  a {
+    @apply outline-none;
+  }
+
+  /* Tailwind v4 preflight dropped v3's `button { cursor: pointer }`, leaving
+     buttons on the UA default arrow. Put it back. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    @apply outline outline-1 outline-offset-4 outline-beer;
+  }
+
+  /* Slim, unobtrusive scrollbar to match the flat surfaces. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-ink-base;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ink-line;
+    border: 3px solid var(--color-ink-base);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-ink-faint;
+  }
+}
+
+/* Kept in the components layer, not @utility, so callers can still override
+   them with plain utilities (e.g. `class="label text-ink-muted"`). */
+@layer components {
+  /* Small uppercase mono label used for section markers and metadata keys. */
+  .label {
+    @apply font-mono text-xs tracking-widest text-ink-dim uppercase;
+  }
+
+  .rule {
+    @apply h-px w-full bg-ink-line;
+  }
+
+  /* Underline that draws itself in from the left on hover. */
+  .link-underline {
+    @apply relative inline-block;
+  }
+
+  .link-underline::after {
+    content: "";
+    @apply absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-500 ease-smooth;
+  }
+
+  .link-underline:hover::after {
+    @apply origin-left scale-x-100;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
