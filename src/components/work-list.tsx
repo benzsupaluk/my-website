@@ -51,7 +51,7 @@ const WorkList = ({ groups, initialOpen = [] }: WorkListProps) => {
 
   return (
     <div className="flex flex-col gap-6 md:gap-14">
-      <div className="sticky top-0 z-10 flex justify-end bg-ink-base py-4">
+      <div className="sticky top-16 z-10 flex justify-end bg-ink-base py-4">
         <button
           type="button"
           onClick={() => setOpen(allOpen ? [] : allSlugs)}

@@ -11,11 +11,11 @@
 
   --color-ink-base: #0a0a0a;
   --color-ink-raised: #101010;
-  --color-ink-line: #1e1e1e;
-  --color-ink-faint: #4a4a4a;
-  --color-ink-dim: #6e6e6e;
-  --color-ink-muted: #9a9a9a;
-  --color-ink-fg: #ededed;
+  --color-ink-line: #262626;
+  --color-ink-faint: #6b6b6b;
+  --color-ink-dim: #8f8f8f;
+  --color-ink-muted: #b8b8b8;
+  --color-ink-fg: #f5f5f5;
 
   --color-beer: #d9a21b;
   --color-beer-soft: #f0c66a;

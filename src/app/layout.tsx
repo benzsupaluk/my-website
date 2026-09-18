@@ -26,12 +26,12 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.role}`,
-    template: `%s — ${site.name}`,
+    default: `${site.name} | ${site.role}`,
+    template: `%s | ${site.name}`,
   },
   description: site.tagline,
   openGraph: {
-    title: `${site.name} — ${site.role}`,
+    title: `${site.name} | ${site.role}`,
     description: site.tagline,
     type: "website",
     locale: "en_US",
@@ -53,7 +53,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <div className="mx-auto w-full max-w-[1180px] px-6 md:px-10">
+        <div className="mx-auto w-full max-w-295 px-6 md:px-10">
           <div className="md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-x-16 lg:grid-cols-[260px_minmax(0,1fr)]">
             <Rail />
             <div className="flex min-h-dvh min-w-0 flex-col">

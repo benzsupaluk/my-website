@@ -25,7 +25,7 @@ const LocalTime = () => {
   }, []);
 
   return (
-    <p className="label text-ink-faint">
+    <p className="text-ink-faint text-xs">
       Bangkok
       <span className="mx-1.5 text-ink-line">/</span>
       <span suppressHydrationWarning className="text-ink-dim tabular-nums">

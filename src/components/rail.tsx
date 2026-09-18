@@ -17,7 +17,7 @@ const Rail = () => {
     <header
       className={clsx(
         "z-10 flex flex-col gap-6 border-b border-ink-line bg-ink-base py-6",
-        "md:sticky md:top-0 md:h-dvh md:justify-between md:gap-0 md:border-b-0 md:py-24",
+        "sticky top-0 md:h-dvh md:justify-between md:gap-0 md:border-b-0 md:py-24",
       )}
     >
       <div className="flex items-baseline justify-between gap-6 md:block">
@@ -64,7 +64,7 @@ const Rail = () => {
         <div className="rule" />
         <a
           href={`mailto:${site.email}`}
-          className="link-underline w-fit font-mono text-sm text-ink-muted transition-colors duration-300 hover:text-ink-fg"
+          className="link-underline w-fit font-mono text-xs text-ink-muted transition-colors duration-300 hover:text-ink-fg"
         >
           {site.email}
         </a>
@@ -72,7 +72,7 @@ const Rail = () => {
           href={site.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="link-underline w-fit font-mono text-sm text-ink-dim transition-colors duration-300 hover:text-ink-fg"
+          className="link-underline w-fit font-mono text-xs text-ink-dim transition-colors duration-300 hover:text-ink-fg"
         >
           github.com/{site.github}
         </a>
